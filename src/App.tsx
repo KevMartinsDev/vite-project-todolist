@@ -1,13 +1,38 @@
+import TodoForm from './components/TodoForm';
+import TodoHeader from './components/TodoHeader';
+import TodoList from './components/TodoList';
+import { TodoContainer } from './components/TodoContainer';
+import { useTodo } from './hooks/useTodo';
 
 function App() {
 
-  const world = 'World'
+  const {
+    addTodo,
+    toggleTodoCompleted,
+    filteredTodos,
+    clearCompleted,
+    setFilter, 
+    filter, 
+    removeTodo 
+  } = useTodo();
 
   return (
-    <>
-      <h1>Hello, {world}</h1>
-    </>
+    <TodoContainer>
+      <TodoHeader></TodoHeader>
+
+      <TodoForm addTodo={addTodo}></TodoForm>
+
+      <TodoList
+        todoList={filteredTodos}
+        toggleTodoCompleted={toggleTodoCompleted}
+        removeTodo={removeTodo}
+        setFilter={setFilter}
+        filter={filter}
+        clearCompleted={clearCompleted}
+      ></TodoList>
+    </TodoContainer>
+
   )
 }
 
-export default App
+export default App;
